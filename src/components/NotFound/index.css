@@ -1,0 +1,28 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+.retry-button {
+  font-family: 'Roboto';
+  font-size: 13px;
+  color: #ffffff;
+  padding: 10px 27px 10px 27px;
+  background-color: #4656a1;
+  border-width: 0px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+.not-found {
+  height: 300px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+.not-found-head {
+  font-family: 'Roboto';
+  font-size: 30px;
+  margin: 0px;
+  font-weight: bold;
+}

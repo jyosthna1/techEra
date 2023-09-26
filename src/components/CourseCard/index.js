@@ -9,7 +9,7 @@ const CourseCard = props => {
     <li className="course-item">
       <Link to={`/courses/${id}`} className="link-item">
         <img src={logoUrl} alt={name} className="course-logo" />
-        <h1 className="course-name">{name}</h1>
+        <p className="course-name">{name}</p>
       </Link>
     </li>
   )

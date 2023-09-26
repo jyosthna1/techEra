@@ -1,7 +1,7 @@
 import './index.css'
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import Header from '../Header'
+import {Link} from 'react-router-dom'
 import CourseCard from '../CourseCard'
 
 const apiStatusConstants = {
@@ -10,6 +10,18 @@ const apiStatusConstants = {
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
+
+const Header = () => (
+  <div className="header">
+    <Link to="/">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/tech-era/website-logo-img.png"
+        alt="website logo"
+        className="website-logo"
+      />
+    </Link>
+  </div>
+)
 
 class Home extends Component {
   state = {apiStatus: apiStatusConstants.initial, courseList: []}
@@ -41,7 +53,7 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <div className="products-loader-container">
+    <div className="products-loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -60,6 +72,27 @@ class Home extends Component {
     )
   }
 
+  renderFailureView = () => (
+    <div className="not-found-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
+        className="failure-view"
+        alt="failure view"
+      />
+      <h1 className="failure-head">Oops! Something Went Wrong</h1>
+      <p className="para">
+        We cannot seem to find the page you are looking for.
+      </p>
+      <button
+        type="button"
+        className="retry-button"
+        onClick={this.getCourseDetails}
+      >
+        Retry
+      </button>
+    </div>
+  )
+
   renderCourseDetails = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -67,6 +100,8 @@ class Home extends Component {
         return this.renderLoader()
       case apiStatusConstants.success:
         return this.renderSuccessView()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
       default:
         return null
     }
